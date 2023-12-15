@@ -1,4 +1,4 @@
-name: Run PHPUnit Tests
+name: PHP Unit Test
 
 on:
   push:
@@ -13,23 +13,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup PHP
+    - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'
-        extensions: mbstring, intl
-
-    - name: Install Composer
-      run: |
-        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        php composer-setup.php
-        php -r "unlink('composer-setup.php');"
+        php-version: '7.2'  # Puedes ajustar la versión según tus necesidades
 
     - name: Install dependencies
       run: composer install
 
-    - name: Run PHPUnit
-      run: ./vendor/bin/phpunit
+    - name: Run PHPUnit tests
+      run: vendor/bin/phpunit
       
     - name: Enviar notificación en caso de fallo
       if: failure()
