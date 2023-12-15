@@ -1,6 +1,6 @@
 {
     "name": "david/sistema-php",
-    "description": "sistema web",
+    "description": "Sistema web",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -16,13 +16,10 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
-        "classmap": [
-            "D:\\xampp\\htdocs\\sistemaPHP web\\src/",
-            "D:\\xampp\\htdocs\\sistemaPHP web\\tests/"
-        ]
+        "classmap": ["src/", "tests/"]
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit --testsuite=full"
     },
     "config": {
         "sort-packages": true
@@ -31,5 +28,7 @@
         "composer-exit-on-patch": true
     }
 }
+
+
 
 
