@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'a/tu-proyecto',
+        'name' => 'david/sistema-php',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4c3ac88aeaf491d971dc50195b9d84bd71152c35',
+        'reference' => '8cfba99eab5d83abd9c895125b08359e4a958531',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'a/tu-proyecto' => array(
+        'david/sistema-php' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4c3ac88aeaf491d971dc50195b9d84bd71152c35',
+            'reference' => '8cfba99eab5d83abd9c895125b08359e4a958531',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,4 +1,4 @@
-name: PHPUnit
+name: Run PHPUnit Tests
 
 on:
   push:
@@ -7,29 +7,29 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout código
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Configurar PHP
+    - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
-        extensions: mbstring, xml, intl
+        extensions: mbstring, intl
 
-    - name: Instalar Composer
+    - name: Install Composer
       run: |
-        Invoke-WebRequest -Uri https://getcomposer.org/installer -OutFile composer-setup.php
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         php composer-setup.php
-        Remove-Item composer-setup.php
+        php -r "unlink('composer-setup.php');"
 
-    - name: Instalar dependencias de Composer
-      run: php composer.phar install
+    - name: Install dependencies
+      run: composer install
 
-    - name: Ejecutar PHPUnit
-      run: .\vendor\bin\phpunit
+    - name: Run PHPUnit
+      run: ./vendor/bin/phpunit
       
     - name: Enviar notificación en caso de fallo
       if: failure()

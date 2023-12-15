@@ -1,12 +1,12 @@
 {
-    "name": "a/tu-proyecto",
-    "description": "Descripción de tu proyecto",
+    "name": "david/sistema-php",
+    "description": "sistema web",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
-            "name": "Tu Nombre",
-            "email": "tu@email.com"
+            "name": "David"
+        
         }
     ],
     "require": {
