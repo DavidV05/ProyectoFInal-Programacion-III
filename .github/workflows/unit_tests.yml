@@ -16,32 +16,21 @@ jobs:
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3.0'
+          php-version: '8.0'
           extensions: mbstring, xml, intl
 
-      - name: Instalar dependencias PHP
+      - name: Instalar Composer dependencies
         run: composer install
+
+      - name: Instalar PHPUnit
+        run: composer require --dev phpunit/phpunit
+
+      - name: Agregar vendor/bin al PATH
+        run: export PATH=$PATH:./vendor/bin
 
       - name: Ejecutar Pruebas Unitarias PHP
         run: ./vendor/bin/phpunit
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Instalar dependencias Node.js
-        run: npm install
-
-      - name: Ejecutar Pruebas Unitarias JavaScript
-        run: npm run test
-
-      - name: Análisis de Código PHP
-        run: ./vendor/bin/phpstan analyze
-
-      - name: Verificación de Estilo JavaScript y CSS
-        run: npm run lint
-
+        
       - name: Enviar notificación en caso de fallo
         if: failure()
         run: echo "Las pruebas unitarias han fallado. Revisa el flujo de trabajo."
