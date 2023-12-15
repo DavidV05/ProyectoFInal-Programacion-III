@@ -1,0 +1,47 @@
+name: Pruebas Unitarias
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3.0'
+          extensions: mbstring, xml, intl
+
+      - name: Instalar dependencias PHP
+        run: composer install
+
+      - name: Ejecutar Pruebas Unitarias PHP
+        run: ./vendor/bin/phpunit
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Instalar dependencias Node.js
+        run: npm install
+
+      - name: Ejecutar Pruebas Unitarias JavaScript
+        run: npm run test
+
+      - name: Análisis de Código PHP
+        run: ./vendor/bin/phpstan analyze
+
+      - name: Verificación de Estilo JavaScript y CSS
+        run: npm run lint
+
+      - name: Enviar notificación en caso de fallo
+        if: failure()
+        run: echo "Las pruebas unitarias han fallado. Revisa el flujo de trabajo."
