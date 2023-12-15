@@ -1,0 +1,36 @@
+name: PHPUnit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v2
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml, intl
+
+    - name: Instalar Composer
+      run: |
+        Invoke-WebRequest -Uri https://getcomposer.org/installer -OutFile composer-setup.php
+        php composer-setup.php
+        Remove-Item composer-setup.php
+
+    - name: Instalar dependencias de Composer
+      run: php composer.phar install
+
+    - name: Ejecutar PHPUnit
+      run: .\vendor\bin\phpunit
+      
+    - name: Enviar notificación en caso de fallo
+      if: failure()
+      run: echo "Las pruebas unitarias han fallado. Revisa el flujo de trabajo."
