@@ -16,9 +16,7 @@
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
-        "classmap": [
-            "D:\\xampp\\htdocs\\sistemaPHP web\\"
-        ],
+        
         "files": [
             "D:\\xampp\\htdocs\\sistemaPHP web\\index.php"
         ]
