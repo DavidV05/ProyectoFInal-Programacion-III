@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.0/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         bootstrap="vendor/autoload.php"
+>
+    <php>
+        <ini name="display_errors" value="On" />
+        <server name="KERNEL_DIR" value="src/" />
+        <!-- Ajusta la versión de PHP según tus necesidades -->
+        <ini name="error_reporting" value="-1" />
+        <ini name="memory_limit" value="512M" />
+        <ini name="max_execution_time" value="60" />
+        <!-- Especifica la versión de PHP -->
+        <ini name="php" value="8.3.0" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

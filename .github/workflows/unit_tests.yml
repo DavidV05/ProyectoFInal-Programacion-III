@@ -16,11 +16,14 @@ jobs:
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.3.0'
           extensions: mbstring, xml, intl
 
       - name: Instalar Composer dependencies
         run: composer install
+
+      - name: Cambiar al directorio del proyecto
+        run: cd D:\xampp\htdocs\sistemaPHP web
 
       - name: Instalar PHPUnit
         run: composer require --dev phpunit/phpunit
@@ -30,7 +33,7 @@ jobs:
 
       - name: Ejecutar Pruebas Unitarias PHP
         run: ./vendor/bin/phpunit
-        
+
       - name: Enviar notificación en caso de fallo
         if: failure()
         run: echo "Las pruebas unitarias han fallado. Revisa el flujo de trabajo."
